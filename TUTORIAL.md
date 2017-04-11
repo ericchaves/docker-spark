@@ -3,13 +3,9 @@ Spark Dojo
 
 
 1. clone do repositorio e cd spark-dojo
-2. baixar dados de exemplo
-   curl -o ./data/ol_cdump.json  https://s3-eu-west-1.amazonaws.com/csparkdata/ol_cdump.json
-3. iniciar o cluster
-   docker-compose up -d
-4. acessar o cluster em puspark shell
-   docker exec -it dockerspark_master_1 bin/pyspark
-   docker exec -it dockerspark_master_1 /bin/bash
+2. baixar dados de exemplo ```curl -o ./data/ol_cdump.json  https://s3-eu-west-1.amazonaws.com/csparkdata/ol_cdump.json```
+3. iniciar o cluster ```docker-compose up -d```
+4. acessar o cluster em puspark shell ```docker exec -it dockerspark_master_1 bin/pyspark```
 5. após entrar no shell executar os comandos
    path = "file:///tmp/data/ol_cdump.json"
    raw_data = sc.textFile(path)
