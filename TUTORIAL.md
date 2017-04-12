@@ -62,14 +62,26 @@ Spark Dojo
    >> root
    >>   |-- alternate_names: array (nullable = true)
    >> note: poor shcema inferred
+
    booksDF.createOrReplaceTempView("old_books")
-   booksDF.perists()
-   booksTitles = spark.sql("select distinct title from old_books ")
-   booksTitles
+   booksDF.persist()
+   results = spark.sql("select * title from old_books limit 1").collect()
+   results
+   results[0]
+   results[0].created.value
+
+   bookTitles = spark.sql("select distinct title from old_books ")
+   bookTitles
    >> DataFrame[title: string]
    booksTitles.show(10, False)
-  
-  
+
+   spark.sql("add jar /var/lib/spark-extras/json-serde-1.3.7-jar-with-dependencies.jar")
+   spark.sql("add jar /var/lib/spark-extras/json-udf-1.3.7-jar-with-dependencies.jar")
+   with open("/usr/spark-2.1.0/dojo/book-schema.sql") as fr:
+     query = fr.read()
+   results = spark.sql(query)
+   booksTable = spark.sql("LOAD DATA LOCAL INPATH 'file:///tmp/data/ol_cdump.json' OVERWRITE INTO TABLE books")
+
    booksDF.write.format("parquet").mode("Append").partitionBy("created").parquet("/tmp/data/books.parquet")
    spark.sql("MSCK REPAIR TABLE books")
 
@@ -77,3 +89,5 @@ Spark Dojo
 
 https://community.hortonworks.com/articles/82346/spark-pyspark-for-etl-to-join-text-files-with-data.html
 http://cambridgespark.com/content/tutorials/interactively-analyse-100GB-of-JSON-data-with-Spark/index.html
+
+        
