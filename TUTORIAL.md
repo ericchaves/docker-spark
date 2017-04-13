@@ -5,7 +5,8 @@ Spark Dojo
 1. clone do repositorio e cd spark-dojo
 2. baixar dados de exemplo ```curl -o ./data/ol_cdump.json  https://s3-eu-west-1.amazonaws.com/csparkdata/ol_cdump.json```
 3. iniciar o cluster ```docker-compose up -d```
-4. acessar o cluster em puspark shell ```docker exec -it dockerspark_master_1 bin/pyspark```
+4. acessar o cluster em pyspark shell ```docker exec -it dockerspark_master_1 bin/pyspark```
+5. após concluir o bloco de instruções, encerrar os containers com ``docker-compose down```
 
 ### Spark RDD, transformations e actions
 
@@ -47,9 +48,17 @@ Spark Dojo
   
    >> (25, <pyspark.resultiterable.ResultIterable object at 0x7f73ad4036d8>)
    >> (10, <pyspark.resultiterable.ResultIterable object at 0x7f73a650b128>)
+   CTRL+D
 
 ### SparkSession, novo contexto
 
+1. antes de iniciar este bloco baixe os arquivos de JSON SerDe:
+```
+  cd jars
+  curl -O http://www.congiu.net/hive-json-serde/1.3.7/hdp23/json-serde-1.3.7-jar-with-dependencies.jar
+  curl -O http://www.congiu.net/hive-json-serde/1.3.7/hdp23/json-udf-1.3.7-jar-with-dependencies.jar
+  cd ..
+```
    spark
    >> <pyspark.sql.session.SparkSession object at 0x7ffb72e22d30>
 
@@ -91,3 +100,4 @@ https://community.hortonworks.com/articles/82346/spark-pyspark-for-etl-to-join-t
 http://cambridgespark.com/content/tutorials/interactively-analyse-100GB-of-JSON-data-with-Spark/index.html
 
         
+

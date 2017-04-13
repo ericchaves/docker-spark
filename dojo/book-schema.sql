@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS books (
   notes  struct<type:string, value:string>,
   number_of_pages int,
   publish_date int,
-  works array<struct<key:string>>,
+  works array<struct<key:string>>
 )
 ROW FORMAT SERDE 'org.openx.data.jsonserde.JsonSerDe'
 STORED AS TEXTFILE
